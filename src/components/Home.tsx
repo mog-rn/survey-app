@@ -20,7 +20,7 @@ const Home = () => {
         <Link to="survey">Take the Survey</Link>
       </Button>
       <Button variant="contained" color="success" sx={{ marginBottom: "10px" }}>
-        <Link to="responses" sx={{color: 'white'}}>View your response</Link>
+        <Link to="responses">View your response</Link>
       </Button>
     </Box>
   );

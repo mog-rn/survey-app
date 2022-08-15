@@ -1,19 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../app/store'
-import {decrement, increment} from "../features/counter/counterSlice"
+import {Routes, Route} from "react-router-dom"
+import Home from "./Home";
+import Responses from "./Responses";
+import Survey from "./Survey";
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
-
   return (
-    <div className="">
-      The value of count is {count}
-
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-    </div>
-  )
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="survey" element={<Survey />} />
+        <Route path="responses" element={<Responses />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;

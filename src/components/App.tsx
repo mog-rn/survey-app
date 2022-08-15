@@ -8,7 +8,6 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="survey" element={<Survey />} />
         <Route path="responses" element={<Responses />} />
       </Routes>
     </>

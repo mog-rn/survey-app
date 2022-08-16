@@ -21,7 +21,8 @@ const surveySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchSurveyData.pending, (state) => {
-      state.loading = HTTP_STATUS.PENDING;
+      stat
+      e.loading = HTTP_STATUS.PENDING;
     });
     builder.addCase(fetchSurveyData.fulfilled, (state, { payload }) => {
       state.loading = HTTP_STATUS.FULFILLED;

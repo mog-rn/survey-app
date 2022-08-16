@@ -40,6 +40,7 @@ const Survey = () => {
               alignItems: "center",
               border: "1px solid black",
               width: "500px",
+              padding: "10px"
             }}
           >
             {/* <Typography as="h4" mt={2}>
@@ -49,14 +50,11 @@ const Survey = () => {
               <>
                 <div key={question.id}>
                   <Typography>{data.strings.en[question.id]}</Typography>
-                  <TextField sx={{ margin: "10px" }} />
+                  <TextField required sx={{ margin: "10px" }} />
                 </div>
                 <Button sx={{ border: "1px solid blue" }}>Next</Button>
               </>
-              // <div key={question.id}>
-              //   <h1>{question.question_text}</h1>
-              //   <p>{question.answer_type}</p>
-              // </div>
+              
             ))}
           </Box>
         </Box>

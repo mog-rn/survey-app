@@ -1,3 +1,4 @@
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { HTTP_STATUS } from "../../app/constants";
@@ -21,14 +22,44 @@ const Survey = () => {
       {loading === HTTP_STATUS.PENDING && <div>Loading...</div>}
       {loading === HTTP_STATUS.REJECTED && <div>Error!!</div>}
       {loading === HTTP_STATUS.FULFILLED && (
-        <div>
-          {data.questions.map((question: any) => (
-            <div key={question.id}>
-              <h1>{question.question_text}</h1>
-              <p>{question.answer_type}</p>
-            </div>
-          ))}
-        </div>
+        <Box
+          sx={{
+            padding: "100px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            component="form"
+            noValidate
+            autoComplete="form"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              border: "1px solid black",
+              width: "500px",
+            }}
+          >
+            {/* <Typography as="h4" mt={2}>
+              Welcome to this Farmer Survey
+            </Typography> */}
+            {data.questions.map((question: any) => (
+              <>
+                <div key={question.id}>
+                  <Typography>{data.strings.en[question.id]}</Typography>
+                  <TextField sx={{ margin: "10px" }} />
+                </div>
+                <Button sx={{ border: "1px solid blue" }}>Next</Button>
+              </>
+              // <div key={question.id}>
+              //   <h1>{question.question_text}</h1>
+              //   <p>{question.answer_type}</p>
+              // </div>
+            ))}
+          </Box>
+        </Box>
       )}
     </div>
   );

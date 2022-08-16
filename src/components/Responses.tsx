@@ -7,42 +7,56 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
-
-function createData(
-  surveyId: number,
-  question1: string,
-  question2: string,
-  question3: string
-) {
-  return { surveyId, question1, question2, question3 };
-}
-
-const rows = [
-  createData(1, "Answer1", "Answer3", "Answer2"),
-  createData(2, "Answer1", "Answer3", "Answer2"),
-  createData(3, "Answer1", "Answer3", "Answer2"),
-  createData(4, "Answer1", "Answer3", "Answer2"),
-];
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { HTTP_STATUS } from "../app/constants";
+import { useAppDispatch } from "../app/hooks";
+import { selectData, selectLoadingStatus } from "../features/surveys/selectors";
+import { fetchSurveyData } from "../features/surveys/surveySlice";
 
 const Responses = () => {
-  return (
-    <TableContainer component={Paper} sx={{border: '1px solid black'}}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell
-              sx={{
-                fontWeight: "bold",
-                border: "1px solid black",
-                textAlign: "center",
+  const dispatch = useAppDispatch();
+  const loading = useSelector(selectLoadingStatus);
+  const data = useSelector(selectData);
 
-                fontSize: "18px",
-              }}
-            >
-              Survey ID
-            </TableCell>
-            <TableCell
+  useEffect(() => {
+    dispatch(fetchSurveyData());
+  }, []);
+
+  return (
+    <>
+      {loading === HTTP_STATUS.PENDING && <div>Loading...</div>}
+      {loading === HTTP_STATUS.FULFILLED && (
+        <TableContainer component={Paper} sx={{ border: "1px solid black" }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  sx={{
+                    fontWeight: "bold",
+                    border: "1px solid black",
+                    textAlign: "center",
+
+                    fontSize: "18px",
+                  }}
+                >
+                  Survey ID
+                </TableCell>
+                {data.questions.map((question: any) => (
+                  <TableCell
+                    key={question.id}
+                    sx={{
+                      fontWeight: "bold",
+                      border: "1px solid black",
+                      textAlign: "center",
+
+                      fontSize: "18px",
+                    }}
+                  >
+                    {data.strings.en[question.id]}
+                  </TableCell>
+                ))}
+                {/* <TableCell
               sx={{
                 fontWeight: "bold",
                 border: "1px solid black",
@@ -74,11 +88,11 @@ const Responses = () => {
               }}
             >
               Question 3
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
+            </TableCell> */}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* {rows.map((row) => (
             <TableRow>
               <TableCell sx={{ textAlign: "center" }}>{row.surveyId}</TableCell>
               <TableCell sx={{ textAlign: "center" }}>
@@ -91,10 +105,12 @@ const Responses = () => {
                 {row.question3}
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          ))} */}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </>
   );
 };
 

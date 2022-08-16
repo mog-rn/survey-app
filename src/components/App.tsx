@@ -1,7 +1,7 @@
 import {Routes, Route} from "react-router-dom"
 import Home from "./Home";
 import Responses from "./Responses";
-import Survey from "./Survey";
+import Survey from "../features/surveys/Survey";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="responses" element={<Responses />} />
+        <Route path="survey" element={<Survey />} />
       </Routes>
     </>
   );

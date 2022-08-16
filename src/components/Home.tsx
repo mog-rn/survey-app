@@ -20,14 +20,16 @@ const Home = () => {
         flexDirection: "column",
         justifyItems: "space-between",
         alignItems: "center",
-        padding: "220px",
+        alignSelf: "center",
+        width: '90vw',
+        height: '100vh'
       }}
     >
       <Typography variant="h3" sx={{ marginBottom: "10px" }}>
         Welcome to this Survey App
       </Typography>
       <Button variant="contained" sx={{ marginBottom: "10px" }} onClick={handleClickOpen}>
-        Take the Survey
+        <Link to="survey">Take the Survey</Link>
       </Button>
       <Button variant="contained" color="success" sx={{ marginBottom: "10px" }}>
         <Link to="responses">View your response</Link>

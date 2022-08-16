@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AsyncThunk, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL, HTTP_STATUS } from "../../app/constants";
 
@@ -19,19 +19,18 @@ const surveySlice = createSlice({
     data: null,
   },
   reducers: {},
-  extraReducers: {
-    [fetchSurveyData.pending](state) {
+  extraReducers: (builder) => {
+    builder.addCase(fetchSurveyData.pending, (state) => {
       state.loading = HTTP_STATUS.PENDING;
-    },
-    [fetchSurveyData.fulfilled](state, { payload }) {
+    });
+    builder.addCase(fetchSurveyData.fulfilled, (state, { payload }) => {
       state.loading = HTTP_STATUS.FULFILLED;
       state.data = payload;
-    },
-    [fetchSurveyData.rejected](state){
-      state.loading = HTTP_STATUS.REJECTED
-    }
+    });
+    builder.addCase(fetchSurveyData.rejected, (state) => {
+      state.loading = HTTP_STATUS.REJECTED;
+    });
   },
 });
 
-
-export default surveySlice.reducer
+export default surveySlice.reducer;

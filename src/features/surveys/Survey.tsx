@@ -1,5 +1,4 @@
-import { Dashboard } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HTTP_STATUS } from "../../app/constants";
 import { selectData, selectLoadingStatus } from "./selectors";
